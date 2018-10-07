@@ -41,6 +41,10 @@ contract('DoggyWalkie', function(accounts) {
             (await this.doggyWalkie.finishMinting.call({from:accounts[1]})).should.be.equal(false);
         });
 
+        it("purchaseToken", async function(){
+            (await this.doggyWalkie.purchaseToken.call(3).should.be.ok);
+            (await this.doggyWalkie.purchaseToken.call(3).should.be.throw);
+        })
 
     });
 

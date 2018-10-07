@@ -34,25 +34,17 @@ contract DoggyWalkie is ERC721Full, ERC721Mintable {
     returns (bool)
     {
         transferFrom(ownerOf(tokenId),msg.sender,tokenId);
-    }
-
-
-    function transferFrom(
-        address from,
-        address to,
-        uint256 tokenId
-    )
-    public payable
-    {
         require(_exists(tokenId));
         require(_onHold(tokenId) != false);
-        require(to != address(0));
-        _removeTokenFrom(from, tokenId);
-        _addTokenTo(to, tokenId);
+        require(msg.sender != address(0));
+        _removeTokenFrom(ownerOf(tokenId), tokenId);
+        _addTokenTo(msg.sender, tokenId);
 
-        addToHold(tokenId,from, msg.value);
-        emit Transfer(from, to, tokenId);
+        addToHold(tokenId,ownerOf(tokenId), msg.value);
+        emit Transfer(ownerOf(tokenId), msg.sender, tokenId);
     }
+
+
 
     // send token to hold and collect token price
     function addToHold(uint256 tokenId, address from ,uint256 price){
