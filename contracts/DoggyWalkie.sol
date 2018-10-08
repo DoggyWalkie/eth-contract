@@ -35,7 +35,7 @@ contract DoggyWalkie is ERC721Full, ERC721Mintable {
     {
         transferFrom(ownerOf(tokenId),msg.sender,tokenId);
         require(_exists(tokenId));
-        require(_onHold(tokenId) != false);
+        require(onHold(tokenId) != false);
         require(msg.sender != address(0));
         _removeTokenFrom(ownerOf(tokenId), tokenId);
         _addTokenTo(msg.sender, tokenId);
@@ -55,7 +55,7 @@ contract DoggyWalkie is ERC721Full, ERC721Mintable {
 
     //confirm job - release the money (no fee fro this time)
     function confirmJob(uint256 tokenId){
-        require(_onHold(tokenId));
+        require(onHold(tokenId));
         require(ownerOf(tokenId) == msg.sender);
         _tokenHold[tokenId].transfer(_tokenPrice[tokenId]);
         _tokenHold[tokenId] = address(0);//unhold token
@@ -64,7 +64,7 @@ contract DoggyWalkie is ERC721Full, ERC721Mintable {
 
 
     //is token on hold
-    function _onHold(uint256 tokenId) returns(bool){
+    function onHold(uint256 tokenId) returns(bool){
         address owner = _tokenHold[tokenId];
         return owner != address(0);
     }

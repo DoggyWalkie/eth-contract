@@ -44,9 +44,13 @@ contract('DoggyWalkie', function(accounts) {
         it("purchaseToken", async function(){
             (await this.doggyWalkie.purchaseToken.call(3).should.be.ok);
             (await this.doggyWalkie.purchaseToken.call(3).should.be.throw);
+        });
+
+        it("confirmJob", async function() {
+                //let before = this.ethGetBalance;
+            (await this.doggyWalkie.confirmJob.call(3).should.be.ok);
+                //let after = this.ethGetBalance;
+                //should.be(after>before)
         })
-
     });
-
-
 });
