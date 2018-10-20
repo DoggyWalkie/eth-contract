@@ -28,9 +28,7 @@
     "url": "git+https://github.com/DoggyWalkie/eth-contract.git"
   },
   "author": "Andrey Logunov <systerr@gmail.com>",
-  "contributors": [
-
-  ],
+  "contributors": [],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/DoggyWalkie/eth-contract/issues"
