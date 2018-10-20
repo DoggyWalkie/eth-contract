@@ -1,0 +1,39 @@
+{
+  "name": "doggy-walkie",
+  "version": "1.0.0",
+  "description": "Doggy Walkie ethereum smart contract",
+  "keywords": [
+    "ethereum",
+    "ERC721",
+    "openzeppelin-solidity",
+    "truffle"
+  ],
+  "main": "doggy-walkie",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "chai": "^4.2.0",
+    "chai-bignumber": "^2.0.2",
+    "openzeppelin-solidity": "^2.0.0-rc.2",
+    "truffle": "^4.1.14"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "truffle test",
+    "compile": "truffle compile"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DoggyWalkie/eth-contract.git"
+  },
+  "author": "Andrey Logunov <systerr@gmail.com>",
+  "contributors": [
+
+  ],
+  "license": "MIN",
+  "bugs": {
+    "url": "https://github.com/DoggyWalkie/eth-contract/issues"
+  },
+  "homepage": "https://github.com/DoggyWalkie/eth-contract#readme"
+}
