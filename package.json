@@ -31,7 +31,7 @@
   "contributors": [
 
   ],
-  "license": "MIN",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/DoggyWalkie/eth-contract/issues"
   },
