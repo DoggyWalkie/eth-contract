@@ -33,24 +33,34 @@ contract('DoggyWalkie', function(accounts) {
             (await this.doggyWalkie.balanceOf(accounts[1])).should.be.bignumber.equal(1);
         });
 
-        it("as a OWNER i can't stop minting", async function(){
+        it("as a OWNER i can't stop minting", async function () {
             (await this.doggyWalkie.finishMinting.call()).should.be.equal(false);
         });
 
-        it("as a USER i can't stop minting", async function(){
-            (await this.doggyWalkie.finishMinting.call({from:accounts[1]})).should.be.equal(false);
+        it("as a USER i can't stop minting", async function () {
+            (await this.doggyWalkie.finishMinting.call({from: accounts[1]})).should.be.equal(false);
         });
+    });
 
-        it("purchaseToken", async function(){
-            (await this.doggyWalkie.purchaseToken.call(3).should.be.ok);
-            (await this.doggyWalkie.purchaseToken.call(3).should.be.throw);
-        });
+    context('Token purchase', function () {
 
-        it("confirmJob", async function() {
-                //let before = this.ethGetBalance;
-            (await this.doggyWalkie.confirmJob.call(3).should.be.ok);
-                //let after = this.ethGetBalance;
-                //should.be(after>before)
-        })
+        // it("as a USER i can purchase a token", async function(){
+        //     let tomorrow = new Date();
+        //     tomorrow.setDate(tomorrow.getDate() + 1);
+        //     await this.doggyWalkie.mintWithTokenURI(accounts[1], 0, Date.now() + ":" + tomorrow.getTime(), {
+        //         from: accounts[1]
+        //     });
+        //
+        //
+        //     (await this.doggyWalkie.purchaseToken.call(2).should.be.ok);
+        //   //  (await this.doggyWalkie.purchaseToken.call(0).should.be.throw);
+        // });
+        //
+        // it("confirmJob", async function() {
+        //         //let before = this.ethGetBalance;
+        //    // (await this.doggyWalkie.confirmJob.call(3).should.be.ok);
+        //         //let after = this.ethGetBalance;
+        //         //should.be(after>before)
+        // })
     });
 });
