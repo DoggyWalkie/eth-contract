@@ -8,8 +8,8 @@ contract DoggyWalkie is ERC721Full, ERC721Mintable {
 
 
     // Mapping token hold to address (previous owner)
-    mapping (uint256 => address) private _tokenHold;
-    mapping (uint256 => uint256) private _tokenPrice;
+    mapping(uint256 => address) private _tokenHold;
+    mapping(uint256 => uint256) private _tokenPrice;
 
     constructor() ERC721Full("DoggyWalkie", "DOGGY") public {
     }
@@ -33,38 +33,39 @@ contract DoggyWalkie is ERC721Full, ERC721Mintable {
     payable
     returns (bool)
     {
-        transferFrom(ownerOf(tokenId),msg.sender,tokenId);
+        transferFrom(ownerOf(tokenId), msg.sender, tokenId);
         require(_exists(tokenId));
         require(onHold(tokenId) != false);
         require(msg.sender != address(0));
         _removeTokenFrom(ownerOf(tokenId), tokenId);
         _addTokenTo(msg.sender, tokenId);
 
-        addToHold(tokenId,ownerOf(tokenId), msg.value);
+        addToHold(tokenId, ownerOf(tokenId), msg.value);
         emit Transfer(ownerOf(tokenId), msg.sender, tokenId);
     }
 
 
 
     // send token to hold and collect token price
-    function addToHold(uint256 tokenId, address from ,uint256 price){
+    function addToHold(uint256 tokenId, address from, uint256 price) public {
         _tokenPrice[tokenId] = price;
         _tokenHold[tokenId] = from;
 
     }
 
     //confirm job - release the money (no fee fro this time)
-    function confirmJob(uint256 tokenId){
+    function confirmJob(uint256 tokenId) public {
         require(onHold(tokenId));
         require(ownerOf(tokenId) == msg.sender);
         _tokenHold[tokenId].transfer(_tokenPrice[tokenId]);
-        _tokenHold[tokenId] = address(0);//unhold token
+        _tokenHold[tokenId] = address(0);
+        //unhold token
 
     }
 
 
     //is token on hold
-    function onHold(uint256 tokenId) returns(bool){
+    function onHold(uint256 tokenId) public view returns (bool){
         address owner = _tokenHold[tokenId];
         return owner != address(0);
     }
